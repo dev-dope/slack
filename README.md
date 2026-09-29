@@ -20,6 +20,26 @@ Rename `display_information.name` and `features.bot_user.display_name` before pa
 
 Agent DMs need a paid Slack plan, or a [Slack Developer Program](https://api.slack.com/developer-program) sandbox.
 
+## Run the agent
+
+The installed app stays quiet until this process is connected.
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Put the bot token (`xoxb-`) in `.env`. The server then polls Slack and answers new DMs and @mentions. An app-level token (`xapp-`, scope `connections:write`) switches it to Socket Mode. `LMSTUDIO_BASE_URL` sends questions to a local LM Studio server. An OpenAI key is the fallback when LM Studio is not set.
+
+```bash
+python server.py --check
+python server.py
+```
+
+`--check` confirms Slack accepted the tokens. The second command stays open and answers DMs and @mentions. Send a new message after it is running. The earlier "hi" is not replayed.
+
 ## Send this to someone in another workspace
 
 Yes. Send them `manifest.yaml`, or a link:
