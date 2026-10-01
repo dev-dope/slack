@@ -1,3 +1,4 @@
+# Dope slack app manifest
 display_information:
   name: mock-ezra
   description: Talk to this agent in a DM, or mention it in a channel.
